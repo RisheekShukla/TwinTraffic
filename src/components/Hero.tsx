@@ -50,7 +50,7 @@ const Hero = () => {
           <a href="#demo" className="primary-btn w-full sm:w-auto justify-center">
             Try Interactive Demo <ArrowRight className="w-5 h-5 ml-1" />
           </a>
-          <a href="https://github.com/risheekshukla/ShadowTool" target="_blank" rel="noreferrer" className="secondary-btn w-full sm:w-auto justify-center">
+          <a href="https://github.com/RisheekShukla/TwinTraffic-Backend" target="_blank" rel="noreferrer" className="secondary-btn w-full sm:w-auto justify-center">
             <Github className="w-5 h-5 mr-1" /> View Source Code
           </a>
         </motion.div>

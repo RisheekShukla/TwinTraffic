@@ -11,7 +11,7 @@ function App() {
       <nav className="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border h-16 flex items-center justify-between px-6">
         <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
           <div className="w-6 h-6 rounded bg-gradient-to-br from-primary to-accent" />
-          ShadowTool
+          TwinTraffic
         </div>
         <div className="hidden md:flex gap-6 text-sm font-medium text-secondary">
           <a href="#features" className="hover:text-white transition-colors">Features</a>
@@ -19,7 +19,7 @@ function App() {
           <a href="#demo" className="hover:text-white transition-colors">Live Demo</a>
         </div>
         <div>
-          <a href="https://github.com/risheekshukla/ShadowTool" target="_blank" rel="noreferrer" className="text-sm font-semibold bg-white text-black px-4 py-2 rounded-md hover:bg-zinc-200 transition">
+          <a href="https://github.com/RisheekShukla/TwinTraffic-Backend" target="_blank" rel="noreferrer" className="text-sm font-semibold bg-white text-black px-4 py-2 rounded-md hover:bg-zinc-200 transition">
             View Source
           </a>
         </div>
