@@ -12,23 +12,60 @@ const LiveDemo = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
-  const handleFireRequest = () => {
+  const API_BASE = "https://twintraffic-backend-production.up.railway.app";
+
+  const handleFireRequest = async () => {
     setLoading(true);
     
-    // Simulate network delay
-    setTimeout(() => {
-      const isMismatch = Math.random() > 0.4;
-      let newResult;
+    try {
+      const payload = {
+        endpoint: "/api/data",
+        method: "POST",
+        payload: { timestamp: new Date().toISOString(), user: "demo" },
+        headers: {}
+      };
+
+      // 1. Fire Proxy Request
+      await fetch(`${API_BASE}/proxy`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      // 2. Wait for async mirror & DB flush
+      await new Promise(resolve => setTimeout(resolve, 2500));
+
+      // 3. Poll latest log ID
+      const reqList = await fetch(`${API_BASE}/requests?page=0&size=1`).then(r => r.json());
       
-      if (!isMismatch) {
-        newResult = mockResponses[0];
-      } else {
-        newResult = Math.random() > 0.5 ? mockResponses[1] : mockResponses[2];
+      if (reqList.content && reqList.content.length > 0) {
+        const reqId = reqList.content[0].id;
+        
+        // 4. Fetch full detail breakdown
+        const detail = await fetch(`${API_BASE}/requests/${reqId}`).then(r => r.json());
+        
+        const matchStatus = detail.comparison?.matchStatus || 'TIMEOUT';
+        const v1Status = detail.v1Response?.statusCode || 0;
+        const v2Status = detail.v2Response?.statusCode || 0;
+        const diffText = detail.comparison ? `${detail.comparison.latencyDiffMs}ms` : '0ms';
+        
+        const resultItem = {
+          type: matchStatus,
+          v1: v1Status,
+          v2: v2Status,
+          diff: diffText,
+          error: matchStatus === 'MISMATCH' ? 'JSON Body Diff detected: altered fields' : 
+                 matchStatus === 'TIMEOUT' ? 'v2 timed out unexpectedly' : null
+        };
+        
+        setResults(prev => [resultItem, ...prev].slice(0, 4));
       }
-      
-      setResults(prev => [newResult, ...prev].slice(0, 4));
+    } catch (err) {
+      console.error("Dashboard Error:", err);
+      setResults(prev => [mockResponses[2], ...prev].slice(0, 4));
+    } finally {
       setLoading(false);
-    }, 600);
+    }
   };
 
   return (
