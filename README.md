@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+<div align="center">
+  <h1>🚦 TwinTraffic <i>(Interactive Showcase)</i></h1>
+  <p><b>The Premium Frontend Dashboard for the TwinTraffic Platform</b></p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  <p>
+    <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+    <img src="https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Framer_Motion-12-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
+  </p>
 
-Currently, two official plugins are available:
+  <p>
+    A production-grade landing page and interactive console designed to showcase the power of the <b>TwinTraffic</b> Shadow Mirroring architecture directly in your browser.
+  </p>
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Premium Glassmorphism UI:** Built with custom Tailwind CSS base utility classes and sleek deep-dark aesthetics.
+- **Interactive Architecture Flow:** A dynamic SVG and Framer Motion data-flow diagram illustrating the Gateway's asynchronous HTTP request splitting in real-time.
+- **Live Demo Console:** Test the backend API right from your browser! Watch as requests are synchronously sent to the primary `v1` service and asynchronously mirrored to the chaotic shadow `v2` service, instantly displaying `MATCH`, `MISMATCH` (with detailed JSON diff trees), or `TIMEOUT` results.
+- **Responsive Layout:** Fluidly scales down to mobile devices, ensuring the metrics and comparison components remain beautifully legible on any screen.
+- **Lightning Fast:** Powered by Vite, ensuring optimal developer experience, instant Hot Module Replacement (HMR), and highly optimized production builds.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Quick Start
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+To run this React application locally, ensure you have Node.js installed, then execute:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Install the exact dependencies (Tailwind, Framer Motion, Lucide)
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start the blazing-fast Vite development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Visit `http://localhost:5173` in your browser to interact with the dashboard.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔗 The Core Engine
+
+This React application acts as the presentation layer. The actual heavy lifting (Asynchronous Java Request Mirroring, Deep JSON Object Diffing, and Chaos engineering) is handled by the **TwinTraffic Backend**.
+
+You can view the main Spring Boot repository and architectural flow here:
+👉 **[TwinTraffic-Backend Repository](https://github.com/RisheekShukla/TwinTraffic-Backend)**
